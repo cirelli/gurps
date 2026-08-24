@@ -26,7 +26,7 @@ export async function rollDamage(
     const damageRoll = displayFormula
     const damageType = GURPS.DamageTables.translate(action.damagetype)
     const damageTypeLabel = i18nFallback(
-      `GURPS.damageTypes.${GURPS.DamageTables.woundModifiers[damageType]?.label}`,
+      `GURPS.damageType${GURPS.DamageTables.woundModifiers[damageType]?.label}`,
       damageType
     )
     const damageTypeIcon = GURPS.DamageTables.woundModifiers[damageType]?.icon || '<i class="fa-solid fa-dice-d6"></i>'

@@ -7,6 +7,7 @@ import { GurpsActor } from '../actor/actor.js'
 import { addBucketToDamage } from '../dierolls/dieroll.js'
 import selectTarget from '../utilities/select-target.js'
 import { Foundry } from '../utilities/foundry-compat.js'
+import { i18nFallback } from '../utilities/i18nFallback.js';
 
 /**
  * DamageChat is responsible for parsing a damage roll and rendering the appropriate chat message for
@@ -256,7 +257,7 @@ export default class DamageChat {
       rolled: rolled,
       modifier: modifier,
       diceText: displayText + additionalText,
-      damageType: damageType,
+      damageType: i18nFallback(`GURPS.damageType${GURPS.DamageTables.woundModifiers[damageType]?.label}`, damageType).toLowerCase(),
       extdamagetype: extdamagetype,
       multiplier: multiplier,
       divisor: divisor,

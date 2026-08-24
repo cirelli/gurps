@@ -74,25 +74,28 @@ const damageTypeMap = {
 }
 
 export class DamageTable {
-  constructor() {
-    let translationTable = {}
-    translationTable[game.i18n.localize('GURPS.damageAbbrevburn')] = 'burn'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevcor')] = 'cor'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevcr')] = 'cr'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevcut')] = 'cut'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevfat')] = 'fat'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevimp')] = 'imp'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevpi-')] = 'pi-'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevpi')] = 'pi'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevpi+')] = 'pi+'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevpi++')] = 'pi++'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevtox')] = 'tox'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevdmg')] = 'dmg'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevinjury')] = 'injury'
-    translationTable[game.i18n.localize('GURPS.damageAbbrevkb')] = 'kb'
+  get translationTable() {
+        if (this._translationTable) return this._translationTable
 
-    this.translationTable = translationTable
-  }
+        let translationTable = {}
+        translationTable[game.i18n.localize('GURPS.damageAbbrevburn')] = 'burn'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevcor')] = 'cor'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevcr')] = 'cr'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevcut')] = 'cut'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevfat')] = 'fat'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevimp')] = 'imp'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevpi-')] = 'pi-'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevpi')] = 'pi'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevpi+')] = 'pi+'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevpi++')] = 'pi++'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevtox')] = 'tox'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevdmg')] = 'dmg'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevinjury')] = 'injury'
+        translationTable[game.i18n.localize('GURPS.damageAbbrevkb')] = 'kb'
+
+        this._translationTable = translationTable
+        return translationTable
+    }
 
   translate(alias) {
     let result = damageTypeMap[alias]
