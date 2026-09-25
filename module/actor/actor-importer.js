@@ -2227,6 +2227,9 @@ export class ActorImporter {
     for (let i of all) {
       if (i.weapons?.length) {
         for (let w of i.weapons) {
+          if (w.hide === true) {
+              continue;
+          }
           if (this.GCSVersion === 5) {
             w.type = w.id.startsWith('w') ? 'melee_weapon' : 'ranged_weapon'
           }
@@ -2234,7 +2237,7 @@ export class ActorImporter {
             let m = new Melee()
             m.name = i.name || i.description || ''
             m.originalName = i.name
-            m.st = w.strength || ''
+            m.st = w.calc?.strength || w.strength || '';
             m.weight = i.weight || ''
             m.techlevel = i.tech_level || ''
             m.cost = i.value || ''
@@ -2243,7 +2246,7 @@ export class ActorImporter {
             m.mode = w.usage || ''
             m.import = w.calc?.level?.toString() || '0'
             m.damage = w.calc?.damage || ''
-            m.reach = w.reach || ''
+            m.reach = w.calc?.reach || w.reach || '';
             m.parry = w.calc?.parry || ''
             m.block = w.calc?.block || ''
             m = this._substituteItemReplacements(m, i)
@@ -2255,7 +2258,7 @@ export class ActorImporter {
             let r = new Ranged()
             r.name = i.name || i.description || ''
             r.originalName = i.name
-            r.st = w.strength || ''
+            r.st = w.calc?.strength || w.strength || '';
             r.bulk = w.bulk || ''
             r.legalityclass = i.legality_class || '4'
             r.ammo = 0
